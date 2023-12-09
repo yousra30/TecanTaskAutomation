@@ -1,10 +1,9 @@
-﻿using ConsoleApp1.pages;
+﻿using Task1.pages;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ConsoleApp1.tests
+namespace Task1.tests
 {
     [TestFixture]
     public class HomePageTest: BaseTest
@@ -12,6 +11,7 @@ namespace ConsoleApp1.tests
         private HomePage homePage;
         private ShopPage shopPage;
         private ContactPage contactPage;
+        private LoginPage loginPage;
         private SupportPage supportPage;
 
         [SetUp]
@@ -21,39 +21,53 @@ namespace ConsoleApp1.tests
             homePage = new HomePage(driver);
             shopPage = new ShopPage(driver);
             contactPage = new ContactPage(driver);
+            loginPage = new LoginPage(driver);
             supportPage = new SupportPage(driver);
         }
 
         [Test]
+        [TestMethod]
         public void ShopPageNavigationTest()
         {
-            ClassicAssert.IsTrue(homePage.At(), "Not on the expected homePage");
+            homePage.Navigate();
+            homePage.At();
             homePage.ClickShopPage();
-            ClassicAssert.IsTrue(shopPage.At(), "Not on the expected shopPage");
+            shopPage.At();
         }
 
         [Test]
+        [TestMethod]
         public void ContactPageNavigationTest()
-        {
-            ClassicAssert.IsTrue(homePage.At(), "Not on the expected homePage");
+       {
+            homePage.Navigate();
+            homePage.At();
             homePage.ClickContactPage();
-            ClassicAssert.IsTrue(contactPage.At(), "Not on the expected contactPage");
+            contactPage.At();
         }
 
         [Test]
+        [TestMethod]
         public void SupportPageNavigationTest()
-        {
-            ClassicAssert.IsTrue(homePage.At(), "Not on the expected homePage");
+         {
+            homePage.Navigate();
+            homePage.At();
             homePage.ClickContactPage();
-            ClassicAssert.IsTrue(contactPage.At(), "Not on the expected contactPage");
+            contactPage.At();
+            contactPage.RemoveTargetSupportPage();
             contactPage.ClickSupportPage();
-            ClassicAssert.IsTrue(supportPage.At(), "Not on the expected supportPage");
+            loginPage.At();
+            loginPage.ScrollToLoginButton();
+            loginPage.ClickLoginOrSignupText();
+            loginPage.LoginCredentials("yousra.ishtiaque@gmail.com", "testTASK_123");
+            supportPage.At();
         }
 
         [Test]
+        [TestMethod]
         public void SearchBarVisible()
         {
-            ClassicAssert.IsTrue(homePage.At(), "Not on the expected homePage");
+            homePage.Navigate();
+            homePage.At();
             ClassicAssert.IsTrue(homePage.SearchBarVisible(), "Searchbar not shown");
         }
 

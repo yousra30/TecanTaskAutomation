@@ -1,12 +1,12 @@
-﻿using ConsoleApp1.pages;
+﻿using Task1.pages;
 using NUnit.Framework;
-using NUnit.Framework.Legacy;
 
-namespace ConsoleApp1.tests
+namespace Task1.tests
 {
     [TestFixture]
     public class CreateSupportTicketTest: BaseTest
     {
+        private LoginPage loginPage;
         private SupportPage supportPage;
         private CreateTicketPage createTicketPage;
 
@@ -14,6 +14,7 @@ namespace ConsoleApp1.tests
         public override void Setup()
         {
             base.Setup();
+            loginPage = new LoginPage(driver);  
             supportPage = new SupportPage(driver);
             createTicketPage = new CreateTicketPage(driver);
         }
@@ -21,13 +22,25 @@ namespace ConsoleApp1.tests
         [Test]
         public void TestCreateHelpdeskRequest()
         {
-
-            ClassicAssert.IsTrue(supportPage.At(), "Not on the expected supportPage");
-            supportPage.ScrollPageToLoginBotton();
-            supportPage.ClickLoginOrSignupText();
-            supportPage.LoginCredentials("yousra.ishtiaque@gmail.com", "youSRA_786");
-            ClassicAssert.IsTrue(createTicketPage.At(), "Not on the expected TicketPage");
-            createTicketPage.FillTicketForm();
+            loginPage.Navigate();
+            loginPage.At();
+            loginPage.ScrollToLoginButton();
+            loginPage.ClickLoginOrSignupText();
+            loginPage.LoginCredentials("yousra.ishtiaque@gmail.com", "testTASK_123");
+            supportPage.At();
+            supportPage.ClickSubmitTicketButton();
+            createTicketPage.At();
+            createTicketPage.ClickSubmitTicketButton();
+            createTicketPage.ClickNewRequestButton();
+            createTicketPage.ClickTicketOptionButton();
+            createTicketPage.SelectLocation();
+            createTicketPage.SelectProductType();
+            createTicketPage.SelectProduct();
+            createTicketPage.EnterSerialNumber();
+            createTicketPage.EnterSubject();
+            createTicketPage.EnterRequestDescription();
+            createTicketPage.SelectCheckBox();
+            createTicketPage.AttachFile();
         }
     }
 }

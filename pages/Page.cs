@@ -1,8 +1,10 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
-namespace ConsoleApp1.pages
+
+namespace Task1.pages
     
-{
+{   
     public abstract class Page
     {
         protected IWebDriver driver;
@@ -13,6 +15,15 @@ namespace ConsoleApp1.pages
             this.driver = driver;
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
-        public abstract bool At();
+
+        public void ScrollToElement(IWebElement elementToScroll)
+        {
+            int deltaY = elementToScroll.Location.Y;
+            new Actions(driver)
+              .ScrollByAmount(0, deltaY - 400)
+              .Perform();
+        }
+
+        public abstract void At();
     }
 }

@@ -1,8 +1,8 @@
-﻿using ConsoleApp1.pages;
+﻿using Task1.pages;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
 
-namespace ConsoleApp1.tests
+namespace Task1.tests
 {
     [TestFixture]
     public class SearchBarTest: BaseTest
@@ -19,7 +19,8 @@ namespace ConsoleApp1.tests
         [Test]
         public void TestSearchForMagniflex()
         {
-            ClassicAssert.IsTrue(homePage.At(), "Not on the expected homePage");
+            homePage.Navigate();
+            homePage.At();
             ClassicAssert.IsTrue(homePage.SearchBarVisible(), "Searchbar not shown");
             homePage.EnterSearchText("Magniflex");
             ClassicAssert.GreaterOrEqual(1, homePage.CountSearchResults(), "Expected more than one search result");

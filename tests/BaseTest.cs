@@ -1,8 +1,9 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace ConsoleApp1.tests
+namespace Task1.tests
 {
     public abstract class BaseTest
     {
@@ -11,18 +12,16 @@ namespace ConsoleApp1.tests
         [SetUp]
         public virtual void Setup()
         {
-           ChromeOptions options = new ChromeOptions();
-           options.AddArgument("--no-sandbox");
-           driver = new ChromeDriver(options);
-           driver.Manage().Window.Maximize();
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("--no-sandbox");
+            driver = new ChromeDriver(options);
+            driver.Manage().Window.Maximize();
         }
 
         [TearDown]
-        public void TearDown()
-        {
-           driver.Quit(); 
+        public void TearDown() { 
+            driver.Quit();
+            driver.Dispose();
         }
     }
 }
-
-    
