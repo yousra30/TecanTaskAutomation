@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "b68T5f/0V+7/XrNayGaR/YU3ikFjWOHbrS9oU77h33QsulXu/1GeJm68MgLdlOqvfpuB5QzSBatcKyNWMzFZSw==",
+  "dgSpecHash": "sJMdoXKVV3heiNzrngPNjk6gCyIuBaUBtbAc7n+olRrx/tVS7nCrnyktSEiUZ/45nKAzZtZWLnejZ5skgbhBGg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\source\\repos\\ConsoleApp1\\Task1.csproj",
+  "projectFilePath": "C:\\Users\\user\\source\\repos\\ConsoleApp1\\Tecan.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\dotnetseleniumextras.waithelpers\\3.11.0\\dotnetseleniumextras.waithelpers.3.11.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.codecoverage\\17.6.0\\microsoft.codecoverage.17.6.0.nupkg.sha512",

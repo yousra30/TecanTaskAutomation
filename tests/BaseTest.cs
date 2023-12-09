@@ -3,7 +3,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace Task1.tests
+namespace Task1.Tests
 {
     public abstract class BaseTest
     {

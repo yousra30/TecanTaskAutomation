@@ -2,8 +2,7 @@
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 
-namespace Task1.pages
-    
+namespace Task1.Pages
 {   
     public abstract class Page
     {

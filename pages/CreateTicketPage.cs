@@ -1,28 +1,23 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
-using System.IO;
-using System.Numerics;
 
-namespace Task1.pages
+namespace Task1.Pages
 {
-    public class CreateTicketPage: Page
+    public class CreateTicketPage(IWebDriver driver): Page(driver)
     {
-        private IWebElement submitTicketButton => driver.FindElement(By.XPath("//a[contains(text(),'Submit a ticket')]"));
-        private IWebElement newRequest => driver.FindElement(By.XPath("//body/main[@id='fw-main-content']/section[3]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[1]/div[1]/div[1]/div[1]/div[1]"));
-        private IWebElement location => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/section[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[6]/div[1]/div[1]/div[1]/div[1]"));
-        private IWebElement productType => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/section[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[8]/div[1]/div[1]/div[1]/div[1]/div[1]"));
-        private IWebElement product => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/section[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[8]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]"));
-        private IWebElement serialNumber => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/section[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[9]/input[1]"));
-        private IWebElement subject => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/section[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[10]/input[1]"));
-        private IWebElement requestDescription => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/section[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[11]/div[1]/div[3]/div[1]/p[1]"));
-        private IWebElement checkBox1 => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/section[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[12]/input[2]"));
-        private IWebElement checkBox2 => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/section[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[13]/input[2]"));
-        private IWebElement fileInput => driver.FindElement(By.XPath("//*[@id=\"upload_file\"]"));
-    
-        public CreateTicketPage(IWebDriver driver) : base(driver)
-        {
-            // Pass the driver instance to the base constructor
-        }
+        private IWebElement SubmitTicketButton => driver.FindElement(By.XPath("//a[contains(text(),'Submit a ticket')]"));
+        private IWebElement NewRequest => driver.FindElement(By.XPath("//body/main[@id='fw-main-content']/section[3]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[1]/div[1]/div[1]/div[1]/div[1]"));
+        private IWebElement Location => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/section[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[6]/div[1]/div[1]/div[1]/div[1]"));
+        private IWebElement ProductType => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/section[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[8]/div[1]/div[1]/div[1]/div[1]/div[1]"));
+        private IWebElement Product => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/section[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[8]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]"));
+        private IWebElement SerialNumber => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/section[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[9]/input[1]"));
+        private IWebElement Subject => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/section[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[10]/input[1]"));
+        private IWebElement RequestDescription => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/section[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[11]/div[1]/div[3]/div[1]/p[1]"));
+        private IWebElement CheckBox1 => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/section[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[12]/input[2]"));
+        private IWebElement CheckBox2 => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/section[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[13]/input[2]"));
+        private IWebElement FileInput => driver.FindElement(By.XPath("//*[@id=\"upload_file\"]"));
+
+        private const string RandomText = "TestText";
 
         public override void At()
         {
@@ -31,12 +26,12 @@ namespace Task1.pages
 
         public void ClickSubmitTicketButton()
         {
-            submitTicketButton.Click();
+            SubmitTicketButton.Click();
         }
 
         public void ClickNewRequestButton()
         {
-            newRequest.Click();
+            NewRequest.Click();
         }
 
         public void ClickTicketOptionButton()
@@ -47,52 +42,52 @@ namespace Task1.pages
 
         public void SelectLocation()
         {
-            ScrollToElement(location);
-            location.Click();
+            ScrollToElement(Location);
+            Location.Click();
             IWebElement locationOption = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id=\"choices--helpdesk_ticket_custom_field_cf_country_2351753-item-choice-4\"]")));
             locationOption.Click();
         }
 
         public void SelectProductType()
         {
-            productType.Click();
+            ProductType.Click();
             IWebElement productTypeOption = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id=\"choices--helpdesk_ticket_custom_field_cf_type_of_product_2351753-item-choice-4\"]")));
             productTypeOption.Click();
         }
 
         public void SelectProduct()
         {
-            product.Click();
+            Product.Click();
             IWebElement productOption = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id=\"choices--helpdesk_ticket_custom_field_cf_product_2351753-item-choice-4\"]")));
             productOption.Click();
         }
 
         public void EnterSerialNumber()
         {
-            serialNumber.SendKeys("12345");
+            SerialNumber.SendKeys(RandomText);
         }
 
         public void EnterSubject()
         {
-            subject.SendKeys("12345");
+            Subject.SendKeys(RandomText);
         }
 
         public void EnterRequestDescription()
         {
-            ScrollToElement(requestDescription);
-            requestDescription.SendKeys("12345");
+            ScrollToElement(RequestDescription);
+            RequestDescription.SendKeys(RandomText);
         }
 
         public void SelectCheckBox()
         {
-            checkBox1.Click();
-            checkBox2.Click();
+            CheckBox1.Click();
+            CheckBox2.Click();
         }
 
         public void AttachFile()
         {
             string filePath = @"C:\Users\user\Downloads\img_1.jpg"; // specify the local path of your image
-            fileInput.SendKeys(filePath);
+            FileInput.SendKeys(filePath);
         }
     }
 }

@@ -1,23 +1,18 @@
-﻿using NUnit.Framework.Legacy;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 
-namespace Task1.pages
+namespace Task1.Pages
 {
-    public class LoginPage: Page
+    public class LoginPage(IWebDriver driver): Page(driver)
     {
-        private string loginPage = "https://helpdesk.tecan.com/en/support/login";
-        private IWebElement loginOrSignUpText => driver.FindElement(By.XPath("//a[contains(text(),'log in or sign-up')]"));
-        private IWebElement emailField => driver.FindElement(By.XPath("//input[@id='1-email']"));
-        private IWebElement passwordField => driver.FindElement(By.XPath("//input[@id='1-password']"));
-        private IWebElement loginButton => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/div[1]/div[2]/form[1]/div[1]/div[1]/div[1]/button[1]/span[1]"));
-        private IWebElement banner => driver.FindElement(By.XPath("//body/main[@id='fw-main-content']/div[1]/div[1]"));
+        private const string LoginPageUrl = "https://helpdesk.tecan.com/en/support/login";
+        private IWebElement LoginOrSignUpText => driver.FindElement(By.XPath("//a[contains(text(),'log in or sign-up')]"));
+        private IWebElement EmailField => driver.FindElement(By.XPath("//input[@id='1-email']"));
+        private IWebElement PasswordField => driver.FindElement(By.XPath("//input[@id='1-password']"));
+        private IWebElement LoginButton => driver.FindElement(By.XPath("/html[1]/body[1]/main[1]/div[1]/div[2]/form[1]/div[1]/div[1]/div[1]/button[1]/span[1]"));
 
-
-        public LoginPage(IWebDriver driver) : base(driver)
-        {
-            // Pass the driver instance to the base constructor
-        }
+        private const string Email = "yousra.ishtiaque@gmail.com";
+        private const string Password = "testTASK_123";
 
         public override void At()
         {
@@ -26,25 +21,25 @@ namespace Task1.pages
 
         public void ScrollToLoginButton()
         {
-            ScrollToElement(loginOrSignUpText);
+            ScrollToElement(LoginOrSignUpText);
         }
 
         public void Navigate()
         {
-            driver.Navigate().GoToUrl(loginPage);
+            driver.Navigate().GoToUrl(LoginPageUrl);
         }
 
         public void ClickLoginOrSignupText()
         {
-            loginOrSignUpText.Click();
+            LoginOrSignUpText.Click();
         }
-        public void LoginCredentials(string email, string password)
+        public void Login(string email = Email, string password = Password)
         {
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//input[@id='1-email']")));
-            emailField.SendKeys(email);
+            EmailField.SendKeys(email);
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//input[@id='1-password']")));
-            passwordField.SendKeys(password);
-            loginButton.Click();
+            PasswordField.SendKeys(password);
+            LoginButton.Click();
         }
     }
 }
